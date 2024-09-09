@@ -19,16 +19,28 @@ def student_info(name):
     student_list.append(student)
     student["Name"] = name
 
-    subject_qnty = int(input("Enter how many grades u want to enter: "))
+
+    while True:
+        try:
+            subject_qnty = int(input("Enter how many grades u want to enter: "))
+            if subject_qnty > 0:
+                break
+            else:
+                print("Wrong value.")
+        except ValueError:
+            print("Wrong value.")
     grades = []
 
     for grade in range(subject_qnty):
         while True:
-            grade = int(input("Enter grade: "))
-            if 0 < grade <= 100:
-                grades.append(grade)
-                break
-            else:
+            try:
+                grade = int(input("Enter grade: "))
+                if 0 < grade <= 100:
+                    grades.append(grade)
+                    break
+                else:
+                    print("Wrong value.")
+            except:
                 print("Wrong value.")
 
     student["Grades"] = grades
@@ -53,4 +65,4 @@ for student in student_list:
         top_average = average
         top_student = name
 
-print(f"{name.upper()} THE BEST OF THE BEST. AVERAGE  SCORE : {top_average}")
+print(f"{top_student} THE BEST OF THE BEST. AVERAGE  SCORE : {top_average}")
